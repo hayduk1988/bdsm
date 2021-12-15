@@ -87,6 +87,7 @@ class _HomePageState extends State<HomePage> {
             ),
             frontLayer: MobileScreen())
         : Scaffold(
+            backgroundColor: Colors.black,
             extendBodyBehindAppBar: true,
             key: scaffoldKey,
             appBar: ResponsiveWidget.isSmallScreen(context)
