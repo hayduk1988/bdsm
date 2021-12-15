@@ -1,34 +1,76 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter_web_example/helpers/style.dart';
-import 'package:flutter_web_example/widgets/button.dart';
+import 'package:flutter_web_example/pages/home/widgets/desktop.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_web_example/pages/home/widgets/desktop.dart';
 
 class NavBar extends StatefulWidget {
+  final GlobalKey key1;
+  final GlobalKey key2;
+  final GlobalKey key3;
+  final GlobalKey key4;
+
+  const NavBar({Key key, this.key1, this.key2, this.key3, this.key4})
+      : super(key: key);
+
   @override
   _NavBarState createState() => _NavBarState();
 }
 
 class _NavBarState extends State<NavBar> {
-    final List _isHovering = [
+  final List _isHovering = [
+    false,
+    false,
     false,
     false,
   ];
+
+  Future scrollToItem(GlobalKey kkey) async {
+    final context = kkey.currentContext;
+    await Scrollable.ensureVisible(context,
+        duration: Duration(milliseconds: 500));
+  }
 
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
 
     return PreferredSize(
-          preferredSize: Size(screenSize.width, 1000),
+      preferredSize: Size(screenSize.width, 1000),
+      child: ClipRRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(
+            sigmaX: 20,
+            sigmaY: 20,
+          ),
           child: Container(
-            color: Colors.transparent,
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+            ),
             child: Padding(
               padding: EdgeInsets.all(20),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(width: 20,),
-                  Image.asset("assets/images/logo.png"),
+                  SizedBox(
+                    width: screenSize.width / 8,
+                  ),
+                  SvgPicture.asset(
+                    'assets/svg/logo1.svg',
+                    height: 37,
+                    width: 37,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  SvgPicture.asset(
+                    'assets/svg/logoText.svg',
+                    height: 37,
+                    width: 37,
+                  ),
                   Expanded(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -43,7 +85,9 @@ class _NavBarState extends State<NavBar> {
                             });
                           },
                           hoverColor: Colors.transparent,
-                          onTap: () {},
+                          onTap: () {
+                            scrollToItem(widget.key1);
+                          },
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -51,7 +95,7 @@ class _NavBarState extends State<NavBar> {
                                 height: 12,
                               ),
                               Text(
-                                'Pricing',
+                                'About',
                                 style: GoogleFonts.roboto(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -85,7 +129,9 @@ class _NavBarState extends State<NavBar> {
                             });
                           },
                           hoverColor: Colors.transparent,
-                          onTap: () {},
+                          onTap: () {
+                            scrollToItem(widget.key2);
+                          },
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -93,7 +139,7 @@ class _NavBarState extends State<NavBar> {
                                 height: 12,
                               ),
                               Text(
-                                'Log In',
+                                'Roadmap',
                                 style: GoogleFonts.roboto(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -118,15 +164,107 @@ class _NavBarState extends State<NavBar> {
                           ),
                         ),
                         SizedBox(width: screenSize.width / 20),
+                        InkWell(
+                          onHover: (value) {
+                            setState(() {
+                              value
+                                  ? _isHovering[2] = true
+                                  : _isHovering[2] = false;
+                            });
+                          },
+                          hoverColor: Colors.transparent,
+                          onTap: () {
+                            scrollToItem(widget.key3);
+                          },
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SizedBox(
+                                height: 12,
+                              ),
+                              Text(
+                                'Roadmap',
+                                style: GoogleFonts.roboto(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: _isHovering[2] ? active : disable,
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Visibility(
+                                maintainAnimation: true,
+                                maintainState: true,
+                                maintainSize: true,
+                                visible: _isHovering[2],
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: active,
+                                      borderRadius: BorderRadius.circular(20)),
+                                  height: 7,
+                                  width: 7,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(width: screenSize.width / 20),
+                        InkWell(
+                          onHover: (value) {
+                            setState(() {
+                              value
+                                  ? _isHovering[3] = true
+                                  : _isHovering[3] = false;
+                            });
+                          },
+                          hoverColor: Colors.transparent,
+                          onTap: () {
+                            scrollToItem(widget.key4);
+                          },
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SizedBox(
+                                height: 12,
+                              ),
+                              Text(
+                                'Roadmap',
+                                style: GoogleFonts.roboto(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: _isHovering[3] ? active : disable,
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Visibility(
+                                maintainAnimation: true,
+                                maintainState: true,
+                                maintainSize: true,
+                                visible: _isHovering[3],
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: active,
+                                      borderRadius: BorderRadius.circular(20)),
+                                  height: 7,
+                                  width: 7,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(width: screenSize.width / 8),
                       ],
                     ),
                   ),
-                  CustomButton(text: "Register",),
-                  SizedBox(width: screenSize.width / 40),
+                  // CustomButton(
+                  //   text: "Register",
+                  // ),
+                  // SizedBox(width: screenSize.width / 40),
                 ],
               ),
             ),
           ),
-        );
+        ),
+      ),
+    );
   }
 }
