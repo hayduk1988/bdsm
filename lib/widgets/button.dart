@@ -14,8 +14,11 @@ class CustomButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 20),
       child: Text(
         text,
-        style: GoogleFonts.roboto(
-            fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+        style: TextStyle(
+            fontFamily: 'HumanSans',
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.white),
       ),
     );
   }

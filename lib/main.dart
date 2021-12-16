@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_example/pages/home/home.dart';
 
-
-void main(){
+void main() {
   runApp(MyApp());
 }
 
@@ -13,7 +12,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Web',
-      theme: ThemeData(visualDensity: VisualDensity.adaptivePlatformDensity),
+      theme: ThemeData(
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          fontFamily: 'HumanSans'),
       home: HomePage(),
     );
   }

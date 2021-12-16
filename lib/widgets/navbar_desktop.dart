@@ -12,8 +12,9 @@ class NavBar extends StatefulWidget {
   final GlobalKey key2;
   final GlobalKey key3;
   final GlobalKey key4;
+  final GlobalKey key5;
 
-  const NavBar({Key key, this.key1, this.key2, this.key3, this.key4})
+  const NavBar({Key key, this.key1, this.key5, this.key2, this.key3, this.key4})
       : super(key: key);
 
   @override
@@ -21,12 +22,7 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-  final List _isHovering = [
-    false,
-    false,
-    false,
-    false,
-  ];
+  final List _isHovering = [false, false, false, false, false];
 
   Future scrollToItem(GlobalKey kkey) async {
     final context = kkey.currentContext;
@@ -43,8 +39,8 @@ class _NavBarState extends State<NavBar> {
       child: ClipRRect(
         child: BackdropFilter(
           filter: ImageFilter.blur(
-            sigmaX: 20,
-            sigmaY: 20,
+            sigmaX: 5,
+            sigmaY: 5,
           ),
           child: Container(
             decoration: BoxDecoration(
@@ -95,10 +91,11 @@ class _NavBarState extends State<NavBar> {
                                 height: 12,
                               ),
                               Text(
-                                'About',
-                                style: GoogleFonts.roboto(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
+                                'block1',
+                                style: TextStyle(
+                                  fontFamily: 'HumanSans',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700,
                                   color: _isHovering[0] ? active : disable,
                                 ),
                               ),
@@ -139,10 +136,11 @@ class _NavBarState extends State<NavBar> {
                                 height: 12,
                               ),
                               Text(
-                                'Roadmap',
-                                style: GoogleFonts.roboto(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
+                                'block2',
+                                style: TextStyle(
+                                  fontFamily: 'HumanSans',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700,
                                   color: _isHovering[1] ? active : disable,
                                 ),
                               ),
@@ -183,10 +181,11 @@ class _NavBarState extends State<NavBar> {
                                 height: 12,
                               ),
                               Text(
-                                'Roadmap',
-                                style: GoogleFonts.roboto(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
+                                'block3',
+                                style: TextStyle(
+                                  fontFamily: 'HumanSans',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700,
                                   color: _isHovering[2] ? active : disable,
                                 ),
                               ),
@@ -227,10 +226,11 @@ class _NavBarState extends State<NavBar> {
                                 height: 12,
                               ),
                               Text(
-                                'Roadmap',
-                                style: GoogleFonts.roboto(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
+                                'block4',
+                                style: TextStyle(
+                                  fontFamily: 'HumanSans',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700,
                                   color: _isHovering[3] ? active : disable,
                                 ),
                               ),
@@ -240,6 +240,51 @@ class _NavBarState extends State<NavBar> {
                                 maintainState: true,
                                 maintainSize: true,
                                 visible: _isHovering[3],
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: active,
+                                      borderRadius: BorderRadius.circular(20)),
+                                  height: 7,
+                                  width: 7,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(width: screenSize.width / 20),
+                        InkWell(
+                          onHover: (value) {
+                            setState(() {
+                              value
+                                  ? _isHovering[4] = true
+                                  : _isHovering[4] = false;
+                            });
+                          },
+                          hoverColor: Colors.transparent,
+                          onTap: () {
+                            scrollToItem(widget.key5);
+                          },
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SizedBox(
+                                height: 12,
+                              ),
+                              Text(
+                                'block5',
+                                style: TextStyle(
+                                  fontFamily: 'HumanSans',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700,
+                                  color: _isHovering[4] ? active : disable,
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Visibility(
+                                maintainAnimation: true,
+                                maintainState: true,
+                                maintainSize: true,
+                                visible: _isHovering[4],
                                 child: Container(
                                   decoration: BoxDecoration(
                                       color: active,

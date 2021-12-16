@@ -5,22 +5,24 @@ class BottomText extends StatelessWidget {
   final String mainText;
   final String secondaryText;
 
-  const BottomText({Key key, this.mainText, this.secondaryText}) : super(key: key);
+  const BottomText({Key key, this.mainText, this.secondaryText})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return  RichText(text: TextSpan(
-        children: [
+    return RichText(
+        text: TextSpan(
+            children: [
           TextSpan(text: "$mainText \n"),
-          TextSpan(text: secondaryText,
-              style: GoogleFonts.roboto(
+          TextSpan(
+              text: secondaryText,
+              style: TextStyle(
+                  fontFamily: 'HumanSans',
                   fontSize: 16,
-                  fontWeight: FontWeight.w300
-              )),
+                  fontWeight: FontWeight.w300)),
         ],
-        style: GoogleFonts.roboto(
-            fontSize: 58,
-            fontWeight: FontWeight.bold
-        )
-    ));
+            style: TextStyle(
+                fontFamily: 'HumanSans',
+                fontSize: 58,
+                fontWeight: FontWeight.bold)));
   }
 }

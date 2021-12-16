@@ -48,6 +48,35 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+
+  fonts:
+    - family: HumanSans
+      fonts:
+        - asset: assets/fonts/HumanSans-Black.otf
+          weight: 900
+        # - asset: fonts/HumanSans-BlackOblique.ttf
+        - asset: assets/fonts/HumanSans-Bold.otf
+          weight: 700
+        # - asset: fonts/HumanSans-BoldOblique.ttf
+        - asset: assets/fonts/HumanSans-ExtraLight.otf
+        # - asset: fonts/HumanSans-ExtraLightOblique.ttf
+        - asset: assets/fonts/HumanSans-Light.otf
+          weight: 300
+        # - asset: fonts/HumanSans-LightOblique.ttf
+        - asset: assets/fonts/HumanSans-Medium.otf
+          weight: 500
+        # - asset: fonts/HumanSans-MediumOblique.ttf
+        - asset: assets/fonts/HumanSans-Regular.otf
+          weight: 400
+        # - asset: fonts/HumanSans-RegularOblique.ttf
+        - asset: assets/fonts/HumanSans-ExtraLight.otf
+          weight: 200
+        - asset: assets/fonts/HumanSans-Thin.otf
+          weight: 100
+        # - asset: fonts/HumanSans-ThinOblique.ttf
+
+
+
   assets:
     - assets/images/
     - assets/svg/

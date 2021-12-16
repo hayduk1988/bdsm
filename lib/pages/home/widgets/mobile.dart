@@ -35,11 +35,15 @@ class MobileScreen extends StatelessWidget {
                         children: [
                           TextSpan(
                               text: "The token you \n must deserve",
-                              style: GoogleFonts.roboto(
-                                  color: active, fontWeight: FontWeight.w800)),
+                              style: TextStyle(
+                                  fontFamily: 'HumanSans',
+                                  color: active,
+                                  fontWeight: FontWeight.w800)),
                         ],
-                        style: GoogleFonts.roboto(
-                            fontSize: 28, fontWeight: FontWeight.bold)),
+                        style: TextStyle(
+                            fontFamily: 'HumanSans',
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold)),
                   ),
                 ),
               ],
@@ -70,7 +74,8 @@ class MobileScreen extends StatelessWidget {
               onPressed: () {},
               child: Text(
                 'Buy BDSM token',
-                style: GoogleFonts.roboto(
+                style: TextStyle(
+                    fontFamily: 'HumanSans',
                     fontSize: 20,
                     fontWeight: FontWeight.w800,
                     color: Colors.white),
