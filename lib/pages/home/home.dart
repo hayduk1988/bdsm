@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   final key3 = GlobalKey();
   final key4 = GlobalKey();
   final key5 = GlobalKey();
+  final key6 = GlobalKey();
   AnimationController controller;
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
@@ -101,6 +102,7 @@ class _HomePageState extends State<HomePage> {
                       key3: key3,
                       key4: key4,
                       key5: key5,
+                      key6: key6,
                     ),
                   ),
             drawer: MobileMenu(),
@@ -111,6 +113,7 @@ class _HomePageState extends State<HomePage> {
                 key3: key3,
                 key4: key4,
                 key5: key5,
+                key6: key6,
               ),
               smallScreen: MobileScreen(),
             ));

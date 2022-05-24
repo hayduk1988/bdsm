@@ -13,8 +13,16 @@ class NavBar extends StatefulWidget {
   final GlobalKey key3;
   final GlobalKey key4;
   final GlobalKey key5;
+  final GlobalKey key6;
 
-  const NavBar({Key key, this.key1, this.key5, this.key2, this.key3, this.key4})
+  const NavBar(
+      {Key key,
+      this.key1,
+      this.key5,
+      this.key2,
+      this.key3,
+      this.key4,
+      this.key6})
       : super(key: key);
 
   @override
@@ -22,12 +30,12 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-  final List _isHovering = [false, false, false, false, false];
+  final List _isHovering = [false, false, false, false, false, false];
 
   Future scrollToItem(GlobalKey kkey) async {
     final context = kkey.currentContext;
     await Scrollable.ensureVisible(context,
-        duration: Duration(milliseconds: 500));
+        duration: Duration(milliseconds: 300));
   }
 
   @override
@@ -69,234 +77,45 @@ class _NavBarState extends State<NavBar> {
                   ),
                   Expanded(
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         SizedBox(width: screenSize.width / 8),
-                        InkWell(
-                          onHover: (value) {
-                            setState(() {
-                              value
-                                  ? _isHovering[0] = true
-                                  : _isHovering[0] = false;
-                            });
-                          },
-                          hoverColor: Colors.transparent,
-                          onTap: () {
-                            scrollToItem(widget.key1);
-                          },
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SizedBox(
-                                height: 12,
-                              ),
-                              Text(
-                                'block1',
-                                style: TextStyle(
-                                  fontFamily: 'HumanSans',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700,
-                                  color: _isHovering[0] ? active : disable,
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Visibility(
-                                maintainAnimation: true,
-                                maintainState: true,
-                                maintainSize: true,
-                                visible: _isHovering[0],
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: active,
-                                      borderRadius: BorderRadius.circular(20)),
-                                  height: 7,
-                                  width: 7,
-                                ),
-                              )
-                            ],
-                          ),
+                        TabBarButton(
+                          scrollKey: widget.key1,
+                          label: 'Buy',
+                          isHovering: _isHovering,
+                          index: 0,
                         ),
-                        SizedBox(width: screenSize.width / 20),
-                        InkWell(
-                          onHover: (value) {
-                            setState(() {
-                              value
-                                  ? _isHovering[1] = true
-                                  : _isHovering[1] = false;
-                            });
-                          },
-                          hoverColor: Colors.transparent,
-                          onTap: () {
-                            scrollToItem(widget.key2);
-                          },
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SizedBox(
-                                height: 12,
-                              ),
-                              Text(
-                                'block2',
-                                style: TextStyle(
-                                  fontFamily: 'HumanSans',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700,
-                                  color: _isHovering[1] ? active : disable,
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Visibility(
-                                maintainAnimation: true,
-                                maintainState: true,
-                                maintainSize: true,
-                                visible: _isHovering[1],
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: active,
-                                      borderRadius: BorderRadius.circular(20)),
-                                  height: 7,
-                                  width: 7,
-                                ),
-                              )
-                            ],
-                          ),
+                        TabBarButton(
+                          scrollKey: widget.key2,
+                          label: 'Ecosystem',
+                          isHovering: _isHovering,
+                          index: 1,
                         ),
-                        SizedBox(width: screenSize.width / 20),
-                        InkWell(
-                          onHover: (value) {
-                            setState(() {
-                              value
-                                  ? _isHovering[2] = true
-                                  : _isHovering[2] = false;
-                            });
-                          },
-                          hoverColor: Colors.transparent,
-                          onTap: () {
-                            scrollToItem(widget.key3);
-                          },
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SizedBox(
-                                height: 12,
-                              ),
-                              Text(
-                                'block3',
-                                style: TextStyle(
-                                  fontFamily: 'HumanSans',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700,
-                                  color: _isHovering[2] ? active : disable,
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Visibility(
-                                maintainAnimation: true,
-                                maintainState: true,
-                                maintainSize: true,
-                                visible: _isHovering[2],
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: active,
-                                      borderRadius: BorderRadius.circular(20)),
-                                  height: 7,
-                                  width: 7,
-                                ),
-                              )
-                            ],
-                          ),
+                        TabBarButton(
+                          scrollKey: widget.key3,
+                          label: 'About',
+                          isHovering: _isHovering,
+                          index: 2,
                         ),
-                        SizedBox(width: screenSize.width / 20),
-                        InkWell(
-                          onHover: (value) {
-                            setState(() {
-                              value
-                                  ? _isHovering[3] = true
-                                  : _isHovering[3] = false;
-                            });
-                          },
-                          hoverColor: Colors.transparent,
-                          onTap: () {
-                            scrollToItem(widget.key4);
-                          },
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SizedBox(
-                                height: 12,
-                              ),
-                              Text(
-                                'block4',
-                                style: TextStyle(
-                                  fontFamily: 'HumanSans',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700,
-                                  color: _isHovering[3] ? active : disable,
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Visibility(
-                                maintainAnimation: true,
-                                maintainState: true,
-                                maintainSize: true,
-                                visible: _isHovering[3],
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: active,
-                                      borderRadius: BorderRadius.circular(20)),
-                                  height: 7,
-                                  width: 7,
-                                ),
-                              )
-                            ],
-                          ),
+                        TabBarButton(
+                          scrollKey: widget.key4,
+                          label: 'RoadMap',
+                          isHovering: _isHovering,
+                          index: 3,
                         ),
-                        SizedBox(width: screenSize.width / 20),
-                        InkWell(
-                          onHover: (value) {
-                            setState(() {
-                              value
-                                  ? _isHovering[4] = true
-                                  : _isHovering[4] = false;
-                            });
-                          },
-                          hoverColor: Colors.transparent,
-                          onTap: () {
-                            scrollToItem(widget.key5);
-                          },
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SizedBox(
-                                height: 12,
-                              ),
-                              Text(
-                                'block5',
-                                style: TextStyle(
-                                  fontFamily: 'HumanSans',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700,
-                                  color: _isHovering[4] ? active : disable,
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Visibility(
-                                maintainAnimation: true,
-                                maintainState: true,
-                                maintainSize: true,
-                                visible: _isHovering[4],
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: active,
-                                      borderRadius: BorderRadius.circular(20)),
-                                  height: 7,
-                                  width: 7,
-                                ),
-                              )
-                            ],
-                          ),
+                        TabBarButton(
+                          scrollKey: widget.key5,
+                          label: 'Tokenomics',
+                          isHovering: _isHovering,
+                          index: 4,
                         ),
-                        SizedBox(width: screenSize.width / 8),
+                        TabBarButton(
+                          scrollKey: widget.key6,
+                          label: 'Team',
+                          isHovering: _isHovering,
+                          index: 5,
+                        )
                       ],
                     ),
                   ),
@@ -310,6 +129,88 @@ class _NavBarState extends State<NavBar> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class TabBarButton extends StatefulWidget {
+  final GlobalKey scrollKey;
+  final String label;
+
+  final int index;
+  final List isHovering;
+
+  const TabBarButton({this.scrollKey, this.index, this.isHovering, this.label});
+
+  @override
+  State<TabBarButton> createState() => _TabBarButtonState();
+}
+
+class _TabBarButtonState extends State<TabBarButton> {
+  Future scrollToItem(GlobalKey kkey) async {
+    final context = kkey.currentContext;
+    await Scrollable.ensureVisible(context,
+        duration: Duration(milliseconds: 300));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+    return Row(
+      children: [
+        SizedBox(width: screenSize.width / 35),
+        InkWell(
+          onHover: (value) {
+            setState(() {
+              value
+                  ? widget.isHovering[widget.index] = true
+                  : widget.isHovering[widget.index] = false;
+            });
+          },
+          hoverColor: Colors.transparent,
+          onTap: () {
+            scrollToItem(widget.scrollKey);
+          },
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                height: 12,
+              ),
+              AnimatedDefaultTextStyle(
+                duration: const Duration(milliseconds: 500),
+                style: widget.isHovering[widget.index]
+                    ? TextStyle(
+                        fontFamily: 'HumanSans',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: active,
+                      )
+                    : TextStyle(
+                        fontFamily: 'HumanSans',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: disable,
+                      ),
+                child: Text(
+                  widget.label,
+                ),
+              ),
+              SizedBox(height: 5),
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 500),
+                decoration: BoxDecoration(
+                    color: widget.isHovering[widget.index]
+                        ? active
+                        : Colors.transparent,
+                    borderRadius: BorderRadius.circular(20)),
+                height: 7,
+                width: 7,
+              )
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

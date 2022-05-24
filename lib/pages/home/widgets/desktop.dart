@@ -2,12 +2,14 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_web_example/animations/onHoveredButton.dart';
 import 'package:flutter_web_example/constants/content.dart';
 import 'package:flutter_web_example/helpers/responsive.dart';
 import 'package:flutter_web_example/helpers/style.dart';
 import 'package:flutter_web_example/widgets/bottom_text_widget.dart';
 import 'package:flutter_web_example/widgets/button.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 
 class DesktopScreen extends StatefulWidget {
   final GlobalKey key1;
@@ -15,6 +17,7 @@ class DesktopScreen extends StatefulWidget {
   final GlobalKey key3;
   final GlobalKey key4;
   final GlobalKey key5;
+  final GlobalKey key6;
 
   const DesktopScreen({
     Key key,
@@ -23,6 +26,7 @@ class DesktopScreen extends StatefulWidget {
     this.key5,
     this.key3,
     this.key4,
+    this.key6,
   }) : super(key: key);
 
   @override
@@ -61,56 +65,65 @@ class _DesktopScreenState extends State<DesktopScreen> {
                           SizedBox(
                             height: 200,
                           ),
-                          RichText(
-                              text: TextSpan(
-                            children: [
-                              TextSpan(
-                                  text: "The token you \n must deserve",
-                                  style: TextStyle(
-                                      fontFamily: 'HumanSans',
-                                      fontSize: ResponsiveWidget.isMediumScreen(
-                                              context)
-                                          ? 68
-                                          : 68,
-                                      color: active,
-                                      fontWeight: FontWeight.w800)),
-                            ],
-                          )),
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: RichText(
+                                text: TextSpan(
+                              children: [
+                                TextSpan(
+                                    text: "The token you \n must deserve",
+                                    style: TextStyle(
+                                        fontFamily: 'HumanSans',
+                                        fontSize:
+                                            ResponsiveWidget.isMediumScreen(
+                                                    context)
+                                                ? 68
+                                                : 68,
+                                        color: active,
+                                        fontWeight: FontWeight.w800)),
+                              ],
+                            )),
+                          ),
                           SizedBox(
                             height: 40,
                           ),
-                          TextButton(
-                            style: ButtonStyle(
-                              shape: MaterialStateProperty.all<OutlinedBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(50))),
-                              padding:
-                                  MaterialStateProperty.all<EdgeInsetsGeometry>(
-                                      EdgeInsets.all(40)),
-                              backgroundColor:
-                                  MaterialStateProperty.all<Color>(disable),
-                              foregroundColor:
-                                  MaterialStateProperty.all<Color>(Colors.blue),
-                              overlayColor:
-                                  MaterialStateProperty.resolveWith<Color>(
-                                (Set<MaterialState> states) {
-                                  if (states.contains(MaterialState.hovered))
-                                    return Colors.blue.withOpacity(0.04);
-                                  if (states.contains(MaterialState.focused) ||
-                                      states.contains(MaterialState.pressed))
-                                    return Colors.blue.withOpacity(0.12);
-                                  return null; // Defer to the widget's default.
-                                },
+                          OnHoverButton(
+                            child: TextButton(
+                              style: ButtonStyle(
+                                shape:
+                                    MaterialStateProperty.all<OutlinedBorder>(
+                                        RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(50))),
+                                padding: MaterialStateProperty.all<
+                                    EdgeInsetsGeometry>(EdgeInsets.all(40)),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(disable),
+                                foregroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.blue),
+                                overlayColor:
+                                    MaterialStateProperty.resolveWith<Color>(
+                                  (Set<MaterialState> states) {
+                                    if (states.contains(MaterialState.hovered))
+                                      return Colors.blue.withOpacity(0.04);
+                                    if (states
+                                            .contains(MaterialState.focused) ||
+                                        states.contains(MaterialState.pressed))
+                                      return Colors.blue.withOpacity(0.12);
+                                    return null; // Defer to the widget's default.
+                                  },
+                                ),
                               ),
-                            ),
-                            onPressed: () {},
-                            child: Text(
-                              'Buy BDSM token',
-                              style: TextStyle(
-                                  fontFamily: 'HumanSans',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white),
+                              onPressed: () {},
+                              child: Text(
+                                'Buy BDSM token',
+                                style: TextStyle(
+                                    fontFamily: 'HumanSans',
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white),
+                              ),
                             ),
                           ),
                         ],
@@ -122,11 +135,63 @@ class _DesktopScreenState extends State<DesktopScreen> {
             ),
           ),
           Container(
-            key: widget.key2,
-            constraints: BoxConstraints(maxWidth: 1440),
-            height: 875,
-            color: disable,
-          ),
+              alignment: Alignment.center,
+              key: widget.key2,
+              constraints: BoxConstraints(maxWidth: 1440),
+              height: 875,
+              color: Colors.black,
+              child: Stack(
+                alignment: Alignment.center,
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Positioned(
+                    top: 10,
+                    left: 280,
+                    child: RotationTransition(
+                      turns: new AlwaysStoppedAnimation(35 / 360),
+                      child: CustomPaint(
+                        painter: MyPainter(),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 550.0, top: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            'For whom',
+                            style: TextStyle(
+                                fontFamily: 'HumanSans',
+                                fontSize: 64,
+                                fontWeight: FontWeight.w800,
+                                color: Colors.white),
+                          ),
+                        ),
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            'Decentralized community token for \n those who want to get the most \n exciting and sinful expirience',
+                            style: TextStyle(
+                                fontFamily: 'HumanSans',
+                                fontSize: 32,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 550.0),
+                    child: Lottie.asset('lottie/lf30_pe3xqua5.json',
+                        height: 637, width: 662),
+                  ),
+                ],
+              )),
           Container(
             key: widget.key3,
             color: Colors.black,
@@ -163,20 +228,20 @@ class _DesktopScreenState extends State<DesktopScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         BlurrContainer(
-                          image: 'assets/images/imageMask.png',
+                          image: 'images/img1.png',
                           title: 'Simple exchange',
                           subtitle:
                               'Buy and resell tokens in one click, with a convenient and understandable conversion.',
                         ),
                         BlurrContainer(
-                          image: 'assets/images/img2.png',
+                          image: 'images/img2.png',
                           title: 'Pay to merchants',
                           subtitle:
                               'Pay for your naughty purchases at affiliate stores.',
                         ),
                         BlurrContainer(
                           title: 'Support community',
-                          image: 'assets/images/image20.png',
+                          image: 'images/img3.png',
                           subtitle:
                               'You are not alone, there are a lot of us and we support the community.',
                         ),
@@ -315,6 +380,173 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 )
               ],
             ),
+          ),
+          Container(
+            key: widget.key6,
+            height: 700,
+            color: Colors.black,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 90,
+                ),
+                Text(
+                  'Team',
+                  style: TextStyle(
+                      fontFamily: 'HumanSans',
+                      fontSize: 58,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.white),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 50.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TeamBox(
+                        imageString: '',
+                        title: 'Michael',
+                        subtitle: 'CEO/CTO/Developer',
+                      ),
+                      TeamBox(
+                        imageString: '',
+                        title: 'Pablo',
+                        subtitle: 'Developer',
+                      ),
+                      TeamBox(
+                        imageString: '',
+                        title: 'Anton',
+                        subtitle: 'Designer',
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          Column(
+            children: [
+              Container(
+                alignment: Alignment.center,
+                // key: widget.key5,
+                height: 500,
+                color: Colors.black,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                    ),
+                    Text(
+                      'Interested?',
+                      style: TextStyle(
+                          fontFamily: 'HumanSans',
+                          fontSize: 58,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 50.0, bottom: 40),
+                      child: Center(
+                        child: Text(
+                          'Leave your email and we will notify you about the start of sales',
+                          style: TextStyle(
+                            fontFamily: 'HumanSans',
+                            fontSize: 24,
+                            height: 2.6,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                          left: screenSize.width / 4,
+                          right: screenSize.width / 4,
+                          bottom: 150),
+                      padding: EdgeInsets.only(
+                          left: 24, right: 4, top: 4, bottom: 4),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: disable),
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(40),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(.1),
+                                offset: Offset(0, 40),
+                                blurRadius: 80)
+                          ]),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: screenSize.width / 4,
+                            padding: EdgeInsets.only(left: 4),
+                            child: TextField(
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontFamily: 'HumanSans',
+                                fontSize: 20,
+                              ),
+                              decoration: InputDecoration(
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey,
+                                    fontFamily: 'HumanSans',
+                                    fontSize: 20,
+                                  ),
+                                  // icon: Icon(
+                                  //   Icons.email_outlined,
+                                  //   color: Colors.grey,
+                                  // ),
+                                  hintText: "Enter your email",
+                                  border: InputBorder.none),
+                            ),
+                          ),
+                          CustomButton(
+                            text: "Notify me",
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                // bottom: 0,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.elliptical((screenSize.width / 2), 100),
+                    topRight: Radius.elliptical(screenSize.width / 2, 100),
+                  ),
+                  child: Container(
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Text(
+                        'BDSM Token 2021 © All rights reserved',
+                        style: TextStyle(
+                          fontFamily: 'HumanSans',
+                          fontSize: 24,
+                          height: 2.6,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    height: 234,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                          disable.withOpacity(0.2),
+                          disable.withOpacity(0.05),
+                          disable.withOpacity(0.01)
+                        ])),
+                  ),
+                ),
+              ),
+            ],
           )
         ],
       ),
@@ -381,12 +613,26 @@ class BlurrContainer extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Positioned(
-                        top: -50,
-                        child: Image.asset(
-                          image,
-                          fit: BoxFit.fitHeight,
-                          // height: 400,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 56.0),
+                        child: Center(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color(0xffD50420).withOpacity(0.65),
+                                  spreadRadius: 5,
+                                  blurRadius: 60,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: Image.asset(
+                              image,
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -399,6 +645,72 @@ class BlurrContainer extends StatelessWidget {
                   color: Colors.white.withOpacity(0.02),
                   borderRadius: BorderRadius.circular(32))),
         ),
+      ),
+    );
+  }
+}
+
+class TeamBox extends StatelessWidget {
+  const TeamBox(
+      {Key key, this.title, this.imageString, this.subtitle, this.subtitlesize})
+      : super(key: key);
+
+  final String title;
+  final String imageString;
+  final String subtitle;
+  final int subtitlesize;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(left: 7, right: 7, top: 18),
+      child: Container(
+        alignment: Alignment.topCenter,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 44.0),
+              child: Container(
+                width: 208,
+                height: 272,
+                child: Image.asset(
+                  imageString.isEmpty
+                      ? "images/teamImage.png"
+                      : "images/$imageString.png",
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+            title != ''
+                ? Text(
+                    title,
+                    style: TextStyle(
+                        fontFamily: 'HumanSans',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w800,
+                        color: active),
+                  )
+                : Container(),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  subtitle,
+                  style: TextStyle(
+                    fontFamily: 'HumanSans',
+                    fontSize: subtitlesize ?? 14,
+                    height: 2.6,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ],
+        ),
+        height: 450,
+        width: 370,
       ),
     );
   }
@@ -528,5 +840,23 @@ class TokenomicBox extends StatelessWidget {
       height: 188,
       width: 561,
     );
+  }
+}
+
+class MyPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final rect = Rect.fromLTRB(20, 100, 500, 800);
+    final paint = Paint()
+      ..color = Color(0xffC8000F).withOpacity(0.16)
+      ..maskFilter = MaskFilter.blur(BlurStyle.normal, 400)
+      ..style = PaintingStyle.fill;
+
+    canvas.drawOval(rect, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter old) {
+    return false;
   }
 }
