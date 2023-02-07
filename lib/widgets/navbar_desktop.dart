@@ -150,7 +150,7 @@ class _TabBarButtonState extends State<TabBarButton> {
   Future scrollToItem(GlobalKey kkey) async {
     final context = kkey.currentContext;
     await Scrollable.ensureVisible(context,
-        duration: Duration(milliseconds: 300));
+        duration: Duration(milliseconds: 1000));
   }
 
   @override

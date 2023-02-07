@@ -77,55 +77,17 @@ class _DesktopScreenState extends State<DesktopScreen> {
                                         fontSize:
                                             ResponsiveWidget.isMediumScreen(
                                                     context)
-                                                ? 68
-                                                : 68,
+                                                ? 50
+                                                : 40,
                                         color: active,
-                                        fontWeight: FontWeight.w800)),
+                                        fontWeight: FontWeight.w600)),
                               ],
                             )),
                           ),
                           SizedBox(
                             height: 40,
                           ),
-                          OnHoverButton(
-                            child: TextButton(
-                              style: ButtonStyle(
-                                shape:
-                                    MaterialStateProperty.all<OutlinedBorder>(
-                                        RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(50))),
-                                padding: MaterialStateProperty.all<
-                                    EdgeInsetsGeometry>(EdgeInsets.all(40)),
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(disable),
-                                foregroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.blue),
-                                overlayColor:
-                                    MaterialStateProperty.resolveWith<Color>(
-                                  (Set<MaterialState> states) {
-                                    if (states.contains(MaterialState.hovered))
-                                      return Colors.blue.withOpacity(0.04);
-                                    if (states
-                                            .contains(MaterialState.focused) ||
-                                        states.contains(MaterialState.pressed))
-                                      return Colors.blue.withOpacity(0.12);
-                                    return null; // Defer to the widget's default.
-                                  },
-                                ),
-                              ),
-                              onPressed: () {},
-                              child: Text(
-                                'Buy BDSM token',
-                                style: TextStyle(
-                                    fontFamily: 'HumanSans',
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white),
-                              ),
-                            ),
-                          ),
+                          HoverButton(),
                         ],
                       ),
                     ),
@@ -155,40 +117,66 @@ class _DesktopScreenState extends State<DesktopScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 550.0, top: 20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            'For whom',
-                            style: TextStyle(
-                                fontFamily: 'HumanSans',
-                                fontSize: 64,
-                                fontWeight: FontWeight.w800,
-                                color: Colors.white),
+                    padding: const EdgeInsets.only(left:60.0),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              'This is \nThe next big step',
+                              textAlign:TextAlign.left,
+                              style: TextStyle(
+                                  fontFamily: 'HumanSans',
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white),
+                            ),
+                            
                           ),
-                        ),
-                        FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            'Decentralized community token for \n those who want to get the most \n exciting and sinful expirience',
-                            style: TextStyle(
-                                fontFamily: 'HumanSans',
-                                fontSize: 32,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white),
+                          SizedBox(height: 40,),
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              'Decentralized community token for \nthose who want to get the most \nexciting and sinful expirience',
+                              textAlign:TextAlign.left,
+                              style: TextStyle(
+                                  fontFamily: 'HumanSans',
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.white),
+                            ),
+                            
                           ),
-                        ),
-                      ],
+                          SizedBox(height: 40,),
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left:.0),
+                              child: Row(
+                                children: [
+                                  HoverButton(),
+                                    SizedBox(width: 40,),
+                                  HoverButton()
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
+                  
                   Padding(
-                    padding: const EdgeInsets.only(left: 550.0),
-                    child: Lottie.asset('lottie/lf30_pe3xqua5.json',
-                        height: 637, width: 662),
+                    padding: const EdgeInsets.only(right:120.0),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Lottie.asset('lottie/lf30_pe3xqua5.json',
+                          height: 437, width: 462),
+                    ),
                   ),
                 ],
               )),
@@ -198,10 +186,10 @@ class _DesktopScreenState extends State<DesktopScreen> {
             width: double.infinity,
             height: 870,
             child: Stack(
-              alignment: Alignment.center,
+              alignment: Alignment.bottomLeft,
               children: [
                 Container(
-                  alignment: Alignment.center,
+                  alignment: Alignment.bottomLeft,
                   child: Image.asset(
                     "assets/images/whatistoken.png",
                     width: screenSize.width,
@@ -217,33 +205,33 @@ class _DesktopScreenState extends State<DesktopScreen> {
                       'What is BDSM token',
                       style: TextStyle(
                           fontFamily: 'HumanSans',
-                          fontSize: 64,
-                          fontWeight: FontWeight.w800,
+                          fontSize: 40,
+                          fontWeight: FontWeight.w600,
                           color: Colors.white),
                     ),
                     SizedBox(
-                      height: 120,
+                      height: 50,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         BlurrContainer(
                           image: 'images/img1.png',
-                          title: 'Simple exchange',
+                          title: 'Your masked privacy',
                           subtitle:
-                              'Buy and resell tokens in one click, with a convenient and understandable conversion.',
+                              'The anonymous of all desires - the BDSM crypto token - is here to give you the freedom to explore your wildest fantasies. Whether for pleasure or power, the token will help you express your desires with complete anonymity. With this token, you can explore the world from all angles without fear of condemnation or consequences. Get ready to explore the world of pleasure, pain and power!',
                         ),
                         BlurrContainer(
                           image: 'images/img2.png',
-                          title: 'Pay to merchants',
+                          title: 'Swap and Play!',
                           subtitle:
-                              'Pay for your naughty purchases at affiliate stores.',
+                              'The BDSM Token is the perfect way to add a naughty edge to your crypto-trading experience! Trade and exchange with other users and indulge in some delightful BDSM-style activities - all while enjoying the convenience of a secure and decentralized blockchain technology. Enjoy the pleasure of anonymous trading and unleash your wildest fantasies!',
                         ),
                         BlurrContainer(
-                          title: 'Support community',
+                          title: 'Unlock Your freedom',
                           image: 'images/img3.png',
                           subtitle:
-                              'You are not alone, there are a lot of us and we support the community.',
+                              'The ultimate crypto token for those looking to get involved in the wild world of sins! With it convenient support community, you can connect with fellow from around the globe and share stories, tips, and advice. Plus, tokens can be used to pay for services and products within the community, making it a great way to take your experience to the next level!',
                         ),
                       ],
                     )
@@ -265,8 +253,8 @@ class _DesktopScreenState extends State<DesktopScreen> {
                   'Roadmap',
                   style: TextStyle(
                       fontFamily: 'HumanSans',
-                      fontSize: 58,
-                      fontWeight: FontWeight.w800,
+                      fontSize: 40,
+                      fontWeight: FontWeight.w600,
                       color: Colors.white),
                 ),
                 Padding(
@@ -320,10 +308,25 @@ class _DesktopScreenState extends State<DesktopScreen> {
                   'Tokenomics',
                   style: TextStyle(
                       fontFamily: 'HumanSans',
-                      fontSize: 58,
-                      fontWeight: FontWeight.w800,
+                      fontSize: 40,
+                      fontWeight: FontWeight.w600,
                       color: Colors.white),
                 ),
+                Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 60.0,vertical: 0),
+                                child: Text(
+                                  'This cryptocurrency token is designed to be used as a medium of exchange within the community. It was first issued in 2023, where 10 million tokens will be initially released in ICO. These tokens can then be used to purchase goods and services within the BDSM community, allowing for a safe, anonymous and secure way for members to transact with each other.',
+                                  style: TextStyle(
+                                    fontFamily: 'HumanSans',
+                                    fontSize: 25,
+                                    height: 1.5,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
                 Stack(
                   children: [
                     Container(
@@ -332,24 +335,24 @@ class _DesktopScreenState extends State<DesktopScreen> {
                           width: screenSize.width, fit: BoxFit.fill),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 111.0),
+                      padding: const EdgeInsets.only(top: 0.0),
                       child: Column(
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               TokenomicBox(
-                                subtitlesize: 25,
+                                subtitlesize: 20,
                                 subtitle1: 'Total suply — ',
-                                subtitleRed: '1.000.000.000.000 ',
-                                subtitle2: 'BDSM tokens and lot of slaps',
+                                subtitleRed: '1,000,000,000 ',
+                                subtitle2: 'BDSM tokens',
                               ),
                               TokenomicBox(
-                                subtitlesize: 25,
+                                subtitlesize: 20,
                                 subtitle2:
-                                    'for growing the liquidity and begin the sin',
-                                subtitleRed: '15% ',
-                                subtitle1: 'Public sale — ',
+                                    'Initial liquidity increase',
+                                subtitleRed: '12% ',
+                                subtitle1: 'Presale fundraising — ',
                               ),
                             ],
                           ),
@@ -358,18 +361,18 @@ class _DesktopScreenState extends State<DesktopScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               TokenomicBox(
-                                subtitlesize: 25,
+                                subtitlesize: 20,
                                 subtitle2:
-                                    'for ropes, toys and leather suits (locked for 4 months by chains)',
-                                subtitleRed: '15% ',
-                                subtitle1: 'Team — ',
+                                    'For devs who also enjoy toys and leather suits(locked for 4 months by chains and ropes)',
+                                subtitleRed: '7% ',
+                                subtitle1: 'Dev team — ',
                               ),
                               TokenomicBox(
-                                subtitlesize: 25,
+                                subtitlesize: 20,
                                 subtitle2:
-                                    'tokens for the community that begs for pleasure',
-                                subtitleRed: '60% ',
-                                subtitle1: 'Comunity — ',
+                                    ' Burning each transfer / Buy / Sell',
+                                subtitleRed: '2% ',
+                                subtitle1: 'Burn — ',
                               ),
                             ],
                           ),
@@ -383,19 +386,19 @@ class _DesktopScreenState extends State<DesktopScreen> {
           ),
           Container(
             key: widget.key6,
-            height: 700,
+            height: 800,
             color: Colors.black,
             child: Column(
               children: [
                 SizedBox(
-                  height: 90,
+                  height: 100,
                 ),
                 Text(
                   'Team',
                   style: TextStyle(
                       fontFamily: 'HumanSans',
-                      fontSize: 58,
-                      fontWeight: FontWeight.w800,
+                      fontSize: 40,
+                      fontWeight: FontWeight.w600,
                       color: Colors.white),
                 ),
                 Padding(
@@ -406,17 +409,17 @@ class _DesktopScreenState extends State<DesktopScreen> {
                       TeamBox(
                         imageString: '',
                         title: 'Michael',
-                        subtitle: 'CEO/CTO/Developer',
+                        subtitle: 'CEO/CTO/Developer\nA seasoned professional and the current head of development in the financial industry. He has extensive experience, having been involved in the launch of numerous fintech systems, banks, and marketplaces.',
                       ),
                       TeamBox(
                         imageString: '',
                         title: 'Pablo',
-                        subtitle: 'Developer',
+                        subtitle: 'Developer\nPablo is a dedicated developer in the financial industry, with a proven track record of successfully launching multiple fintech systems and banks.',
                       ),
                       TeamBox(
                         imageString: '',
                         title: 'Anton',
-                        subtitle: 'Designer',
+                        subtitle: 'Designer\nAnton is a talented designer who has made a significant impact in the world of design. He has launched numerous projects that are used by people on a daily basis, showcasing his innovative and user-centered approach to design.',
                       ),
                     ],
                   ),
@@ -520,6 +523,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                     topRight: Radius.elliptical(screenSize.width / 2, 100),
                   ),
                   child: Container(
+                    padding: EdgeInsets.only(bottom: 50),
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: Text(
@@ -533,7 +537,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                         ),
                       ),
                     ),
-                    height: 234,
+                    height: 100,
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
                             begin: Alignment.topCenter,
@@ -549,6 +553,55 @@ class _DesktopScreenState extends State<DesktopScreen> {
             ],
           )
         ],
+      ),
+    );
+  }
+}
+
+class HoverButton extends StatelessWidget {
+  const HoverButton({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return OnHoverButton(
+      child: TextButton(
+        style: ButtonStyle(
+          shape:
+              MaterialStateProperty.all<OutlinedBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(50))),
+          padding: MaterialStateProperty.all<
+              EdgeInsetsGeometry>(EdgeInsets.all(40)),
+          backgroundColor:
+              MaterialStateProperty.all<Color>(disable),
+          foregroundColor:
+              MaterialStateProperty.all<Color>(
+                  Colors.blue),
+          overlayColor:
+              MaterialStateProperty.resolveWith<Color>(
+            (Set<MaterialState> states) {
+              if (states.contains(MaterialState.hovered))
+                return Colors.blue.withOpacity(0.04);
+              if (states
+                      .contains(MaterialState.focused) ||
+                  states.contains(MaterialState.pressed))
+                return Colors.blue.withOpacity(0.12);
+              return null; // Defer to the widget's default.
+            },
+          ),
+        ),
+        onPressed: () {},
+        child: Text(
+          'Buy BDSM token',
+          style: TextStyle(
+              fontFamily: 'HumanSans',
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+              color: Colors.white),
+        ),
       ),
     );
   }
@@ -587,24 +640,24 @@ class BlurrContainer extends StatelessWidget {
                                 title,
                                 style: TextStyle(
                                     fontFamily: 'HumanSans',
-                                    fontSize: 32,
-                                    fontWeight: FontWeight.w800,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.w600,
                                     color: Colors.white),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
+                              padding: const EdgeInsets.only(top: 15.0),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 16.0),
+                                    horizontal: 30.0),
                                 child: Text(
                                   subtitle,
                                   style: TextStyle(
                                     fontFamily: 'HumanSans',
-                                    fontSize: 18,
-                                    height: 1.8,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white.withOpacity(0.6),
+                                    fontSize: 17,
+                                    height: 1.5,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white.withOpacity(0.8),
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
@@ -633,14 +686,14 @@ class BlurrContainer extends StatelessWidget {
                               fit: BoxFit.fitHeight,
                             ),
                           ),
-                        ),
+                        ),     
                       ),
                     ],
                   ),
                 ],
               ),
-              height: 489,
-              width: 370,
+              height: 650,
+              width: 390,
               decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.02),
                   borderRadius: BorderRadius.circular(32))),
@@ -662,16 +715,16 @@ class TeamBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 7, right: 7, top: 18),
+      padding: EdgeInsets.only(left: 7, right: 7, top: 0),
       child: Container(
         alignment: Alignment.topCenter,
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 44.0),
+              padding: const EdgeInsets.only(bottom: 10.0),
               child: Container(
-                width: 208,
-                height: 272,
+                width: 150,
+                height: 200,
                 child: Image.asset(
                   imageString.isEmpty
                       ? "images/teamImage.png"
@@ -693,7 +746,7 @@ class TeamBox extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Text(
                   subtitle,
                   style: TextStyle(
@@ -709,7 +762,7 @@ class TeamBox extends StatelessWidget {
             ),
           ],
         ),
-        height: 450,
+        height: 600,
         width: 370,
       ),
     );
@@ -759,8 +812,8 @@ class TextBox extends StatelessWidget {
                     title,
                     style: TextStyle(
                         fontFamily: 'HumanSans',
-                        fontSize: 64,
-                        fontWeight: FontWeight.w800,
+                        fontSize: 50,
+                        fontWeight: FontWeight.w600,
                         color: disable),
                   )
                 : Container(),
@@ -822,7 +875,7 @@ class TokenomicBox extends StatelessWidget {
                         text: subtitleRed, style: TextStyle(color: disable)),
                     TextSpan(
                         text: subtitle2,
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                        style: TextStyle(fontWeight: FontWeight.normal)),
                   ],
                   style: TextStyle(
                     fontFamily: 'HumanSans',
@@ -837,7 +890,7 @@ class TokenomicBox extends StatelessWidget {
           ),
         ],
       ),
-      height: 188,
+      height: 100,
       width: 561,
     );
   }
