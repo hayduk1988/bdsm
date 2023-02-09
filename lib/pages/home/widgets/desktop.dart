@@ -42,15 +42,17 @@ class _DesktopScreenState extends State<DesktopScreen> {
       child: Column(
         children: [
           Container(
+            // height: 1200,
             key: widget.key1,
             child: Stack(
               children: [
                 Container(
+                  height: 1000,
                   color: Colors.black,
                   child: Image.asset(
                     "assets/images/img.png",
                     width: screenSize.width,
-                    fit: BoxFit.fitWidth,
+                    fit: BoxFit.fitHeight,
                   ),
                 ),
                 Center(
@@ -63,31 +65,30 @@ class _DesktopScreenState extends State<DesktopScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                            height: 200,
+                            height: 450,
                           ),
-                          FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: RichText(
-                                text: TextSpan(
-                              children: [
-                                TextSpan(
-                                    text: "The token you \n must deserve",
-                                    style: TextStyle(
-                                        fontFamily: 'HumanSans',
-                                        fontSize:
-                                            ResponsiveWidget.isMediumScreen(
-                                                    context)
-                                                ? 50
-                                                : 40,
-                                        color: active,
-                                        fontWeight: FontWeight.w600)),
-                              ],
-                            )),
-                          ),
+                          RichText(
+                            textAlign: TextAlign.center,
+                              text: TextSpan(
+                            children: [
+                              TextSpan(
+                                  text: "The token you must deserve and to which you will be bound",
+                                  
+                                  style: TextStyle(
+                                      fontFamily: 'HumanSans',
+                                      fontSize:
+                                          ResponsiveWidget.isMediumScreen(
+                                                  context)
+                                              ? 70
+                                              : 50,
+                                      color: active,
+                                      fontWeight: FontWeight.w500)),
+                            ],
+                          )),
                           SizedBox(
                             height: 40,
                           ),
-                          HoverButton(),
+                          // HoverButton(),
                         ],
                       ),
                     ),
@@ -96,90 +97,95 @@ class _DesktopScreenState extends State<DesktopScreen> {
               ],
             ),
           ),
-          Container(
-              alignment: Alignment.center,
-              key: widget.key2,
-              constraints: BoxConstraints(maxWidth: 1440),
-              height: 875,
-              color: Colors.black,
-              child: Stack(
-                alignment: Alignment.center,
-                // crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Positioned(
-                    top: 10,
-                    left: 280,
-                    child: RotationTransition(
-                      turns: new AlwaysStoppedAnimation(35 / 360),
-                      child: CustomPaint(
-                        painter: MyPainter(),
+          Stack(
+            children: [
+              
+              Container(
+                  alignment: Alignment.center,
+                  key: widget.key2,
+                  constraints: BoxConstraints(maxWidth: 1440),
+                  height: 875,
+                  color: Colors.black,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Positioned(
+                        top: 10,
+                        left: 280,
+                        child: RotationTransition(
+                          turns: new AlwaysStoppedAnimation(35 / 360),
+                          child: CustomPaint(
+                            painter: MyPainter(),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left:60.0),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Text(
-                              'This is \nThe next big step',
-                              textAlign:TextAlign.left,
-                              style: TextStyle(
-                                  fontFamily: 'HumanSans',
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white),
-                            ),
-                            
-                          ),
-                          SizedBox(height: 40,),
-                          FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Text(
-                              'Decentralized community token for \nthose who want to get the most \nexciting and sinful expirience',
-                              textAlign:TextAlign.left,
-                              style: TextStyle(
-                                  fontFamily: 'HumanSans',
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white),
-                            ),
-                            
-                          ),
-                          SizedBox(height: 40,),
-                          FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left:.0),
-                              child: Row(
-                                children: [
-                                  HoverButton(),
-                                    SizedBox(width: 40,),
-                                  HoverButton()
-                                ],
+                      Padding(
+                        padding: const EdgeInsets.only(left:60.0),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  'This is \nThe next big step',
+                                  textAlign:TextAlign.left,
+                                  style: TextStyle(
+                                      fontFamily: 'HumanSans',
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white),
+                                ),
+                                
                               ),
-                            ),
+                              SizedBox(height: 40,),
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  'Decentralized community token for \nthose who want to get the most \nexciting and sinful expirience',
+                                  textAlign:TextAlign.left,
+                                  style: TextStyle(
+                                      fontFamily: 'HumanSans',
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.white),
+                                ),
+                                
+                              ),
+                              SizedBox(height: 40,),
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left:.0),
+                                  child: Row(
+                                    children: [
+                                      HoverButton(),
+                                        SizedBox(width: 40,),
+                                      HoverButton()
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                  
-                  Padding(
-                    padding: const EdgeInsets.only(right:120.0),
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Lottie.asset('lottie/lf30_pe3xqua5.json',
-                          height: 437, width: 462),
-                    ),
-                  ),
-                ],
-              )),
+                      
+                      Padding(
+                        padding: const EdgeInsets.only(right:120.0),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Lottie.asset('lottie/lf30_pe3xqua5.json',
+                              height: 437, width: 462),
+                        ),
+                      ),
+                    ],
+                  )),
+            ],
+          ),
           Container(
             key: widget.key3,
             color: Colors.black,
@@ -258,7 +264,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                       color: Colors.white),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 111.0),
+                  padding: const EdgeInsets.only(top: 50.0),
                   child: Stack(
                     children: [
                       Image.asset(
@@ -279,7 +285,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                             dot: true,
                             title: 'Phase 2',
                             subtitle:
-                                '* Listing on CoinGecko Listing on CoinMarketCap \n * Logo on Web3 wallets \n * Merch launch \n * BDSM token new bridges, Ethereum, Polygon, Fantom \n * Contract audit \n * NFT launch Celebrity hosts and events, YouTube/social influencers',
+                                '* Listing on CoinGecko \n * Listing on CoinMarketCap \n * Logo on Web3 wallets \n * Merch launch \n * BDSM token new bridges, Ethereum, Polygon, Fantom \n * Contract audit \n * NFT launch Celebrity hosts and events, YouTube/social influencers',
                           ),
                           TextBox(
                             dot: true,
@@ -314,7 +320,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 ),
                 Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 60.0,vertical: 0),
+                                    horizontal: 60.0,vertical: 50),
                                 child: Text(
                                   'This cryptocurrency token is designed to be used as a medium of exchange within the community. It was first issued in 2023, where 10 million tokens will be initially released in ICO. These tokens can then be used to purchase goods and services within the BDSM community, allowing for a safe, anonymous and secure way for members to transact with each other.',
                                   style: TextStyle(
@@ -820,17 +826,19 @@ class TextBox extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                padding: const EdgeInsets.only(left: 90.0),
                 child: Text(
                   subtitle,
+                  
                   style: TextStyle(
                     fontFamily: 'HumanSans',
+                    
                     fontSize: subtitlesize ?? 16,
                     height: 2.6,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w500,
                     color: Colors.white,
                   ),
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.left,
                 ),
               ),
             ),
